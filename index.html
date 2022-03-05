@@ -6,11 +6,14 @@
   </head>
   <body>
 
-    <h1>Weather API Results</h1>
-
+    <h1>Weather Report</h1>
+    <p></p>Click <a href ="https://www.gps-coordinates.net/" target="_blank">HERE</a> to get your GPS Coordinates!</p>
+    
     <form action="/" method="post">
-        <label for="cityInput">City Name: </label>
-        <input id = "cityInput" type="text" name="cityInput">
+         <label for="latitudeInput">Latitude: </label>
+        <input id = "latitudeInput" type="number" step="any" name="latitudeInput">
+        <label for="longitudeInput">Longitude: </label>
+        <input id = "longitudeInput" type="number" step="any" name="longitudeInput">
         <button type="submit">Go</button>
     </form>
 

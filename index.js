@@ -14,14 +14,17 @@ app.get("/", function(req, res) {
 //invoked after hitting go in the html form
 app.post("/", function(req, res) {
     
-    // takes in the CITY from the html form, display in // console.
-        var cityName = req.body.cityInput;
-        console.log(req.body.cityInput);
+    // takes in the Latitude and Longitude from the html form, display in // console.
+        var lat = String(req.body.latitudeInput);
+        console.log(req.body.latitudeInput);
+
+        var lon = String(req.body.longitudeInput);
+        console.log(req.body.longitudeInput);
     
     //build up the URL for the JSON query, API Key is // secret and needs to be obtained by signup 
         const units = "imperial";
         const apiKey = "feac5a4b6ea4734593fb1442b704df05";
-        const url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName +  "&units=" + units + "&APPID=" + apiKey;
+        const url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=" + units + "&appid=" + apiKey;
     
     // this gets the data from Open WeatherPI
     https.get(url, function(response){
@@ -38,13 +41,17 @@ app.post("/", function(req, res) {
             "@2x.png";
             const humidity = weatherData.main.humidity;
             const wind = weatherData.wind.speed;
+            const clouds = weatherData.clouds.all;
             
             // displays the output of the results
-            res.write("<h1> The weather is " + weatherDescription +"<h1>");
-            res.write("<h2> The temperature in " + city + " is " + temp + " Degrees Fahrenheit.<h2>"); 
-            res.write("<h3>The humdity is " + humidity + "% and the wind speed is " + wind +" MPH.<h3>")
-            res.write("<br>");
-            res.write("<img src=" + imageURL +">");
+            res.write("<h1>Weather Report</h1>");
+            res.write("<img src="+ imageURL + ">");
+            res.write("<h2> The weather in " + city + " is " + weatherDescription + ".</h2>");
+            res.write("<h3> Temperature: " + temp + " Degrees Fahrenheit </h3>");
+            res.write("<h3> Humidity: " + humidity + "%</h3>");
+            res.write("<h3> Wind Speed: " + wind + " MPH</h3>");
+            res.write("<h3> Cloudiness: " + clouds + "%</h3>");
+        
             res.send();
         });
     });

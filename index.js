@@ -44,7 +44,7 @@ app.post("/", function(req, res) {
             const clouds = weatherData.clouds.all;
             
             // displays the output of the results
-            res.write("<h1>Weather Report</h1>");
+            res.write("<h1>Current Weather Report</h1>");
             res.write("<img src="+ imageURL + ">");
             res.write("<h2> The weather in " + city + " is " + weatherDescription + ".</h2>");
             res.write("<h3> Temperature: " + temp + " Degrees Fahrenheit </h3>");
